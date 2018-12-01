@@ -6,10 +6,12 @@ services:
 - postgresql
 
 # command to install dependencies
-install:
+
+# command to run tests
+before_script:
+- easy_install distribute
 - pip install -r requirements.txt
 - psql -c 'create database testdb;' -U postgres
-# command to run tests
 script: 
 - pytest --cov=.
 after_success:
